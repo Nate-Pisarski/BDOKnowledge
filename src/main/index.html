@@ -1,39 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 	<title>BDOKnowledge Map</title>
 	
 	<link rel="stylesheet" href="assets/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="assets/css/knowledgeMap.css" />
 	<script src="assets/leaflet/leaflet.js"></script> 
-	<style>
-		body, html, #mapid {
-		  height: 100%;
-		  padding: 0;
-		  margin: 0;
-		}
-	</style>
 </head>
 <body>
 	<div id="mapid"></div>
-	<script>
-		var southWest = L.latLng(-45.25942, -109.86328),
-	    northEast = L.latLng(45.25942, 109.86328),
-	    bounds = L.latLngBounds(southWest, northEast);
-		var mymap = L.map('mapid', {
-			maxBounds: bounds
-		}).setView([-8.0592, -27.68555], 4);
+	<div class="overlay" id="knowledgePanel">
+	
+	<h1>Knowledge</h1>
+	<ol class="knowledgeTree">
+		<li>
+			<label for="category1">Characters</label>
+			<input type="checkbox" class="treeNode" id="category1" /><input type="checkbox" class="toggleLayer" />
+			<ol>
+				<li>
+					<label for="subcategory1">People Of Belenos</label> <input type="checkbox" class="treeNode" id="subcategory1" /><input type="checkbox" class="toggleLayer" />
+					<ol>
+						<li class="knowledge">Olvia<input type="checkbox" class="toggleLayer" /></li>
+						<li class="knowledge">Olvia</li>
+						<li class="knowledge">Olvia</li>
+					</ol>
+				</li>	
+				<li>
+					<label for="toggleLayer1">People Of Heidel</label> <input type="checkbox" class="treeNode" id="toggleLayer1" /><input type="checkbox" class="toggleLayer" />
+					<ol>
+						<li class="knowledge">Omar</li>
+						<li class="knowledge">Gary</li>	
+						<li class="knowledge">Tom</li>	
+						<li class="knowledge">Larry</li>	
+					</ol>
+				</li>
+			</ol>
+		</li>
+		<li>
+			<label for="category2">Topography</label>
+			<input type="checkbox" class="treeNode" id="category2" /><input type="checkbox" class="toggleLayer" />
+			<ol>
+				<li>
+					<label for="subcategory2">Cities</label>
+					<input type="checkbox" class="treeNode" id="subcategory2" /><input type="checkbox" class="toggleLayer" />
+					<ol>
+						<li class="knowledge">Olvia</li>
+						<li class="knowledge">Heidel</li>	
+						<li class="knowledge">Calpheon</li>	
+						<li class="knowledge">Keplan</li>
+					</ol>
+				</li>
+			</ol>
+		</li>
+	</ol>
+
+
+		</div>
 		
-		L.tileLayer('/assets/images/map/{z}/{x}/{y}.png', {
-		    maxZoom: 7,
-		    minZoom: 4,
-		    nowrap: true,
-		    continuousWorld: true
-		}).addTo(mymap);
-		
-		mymap.on('click', function(e) {
-		    alert(e.latlng);
-		});
-	</script>
+		<script>
+			var southWest = L.latLng(-45.25942, -109.86328),
+		    northEast = L.latLng(45.25942, 109.86328),
+	    	bounds = L.latLngBounds(southWest, northEast);
+			var mymap = L.map('mapid', {
+				maxBounds: bounds,
+				zoomControl: false
+			}).setView([-8.0592, -27.68555], 4);
+			
+			L.control.zoom({
+				position:'topright'
+			}).addTo(mymap);
+			
+			L.tileLayer('/assets/images/map/{z}/{x}/{y}.png', {
+			    maxZoom: 7,
+			    minZoom: 4,
+			    nowrap: true,
+			    continuousWorld: true
+			}).addTo(mymap);
+			
+// 			var myControl = L.Control.extend({
+// 				options:{
+// 					position: 'topleft'
+// 				},
+				
+// 				onAdd: function(map) {
+// 					var container = L.DomUtil.create('div', 'my-custom-control');
+					
+// 					return container;
+// 				}
+// 			});
+			
+// 			mymap.addControl(new myControl());
+			
+			
+// 			mymap.on('click', function(e) {
+// 			    alert(e.latlng);
+// 			});
+		</script>
 </body>
 </html>
