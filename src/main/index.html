@@ -17,24 +17,23 @@
 <body>
 	<div id="mapid"></div>
 	<script>
-		var southWest = L.latLng(-84.81837, -176),
-	    northEast = L.latLng(0, 176),
+		var southWest = L.latLng(-45.25942, -109.86328),
+	    northEast = L.latLng(45.25942, 109.86328),
 	    bounds = L.latLngBounds(southWest, northEast);
 		var mymap = L.map('mapid', {
 			maxBounds: bounds
-		}).setView([-68.58, 20.25], 3);
+		}).setView([-8.0592, -27.68555], 4);
 		
 		L.tileLayer('/assets/images/map/{z}/{x}/{y}.png', {
-		    maxZoom: 6,
-		    minZoom: 3,
+		    maxZoom: 7,
+		    minZoom: 4,
 		    nowrap: true,
-		    continuousWorld: true,
-		    tms: true
+		    continuousWorld: true
 		}).addTo(mymap);
 		
-// 		mymap.on('click', function(e) {
-// 		    alert(e.latlng);
-// 		});
+		mymap.on('click', function(e) {
+		    alert(e.latlng);
+		});
 	</script>
 </body>
 </html>
